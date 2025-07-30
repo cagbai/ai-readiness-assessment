@@ -78,7 +78,7 @@ const recommendations = {
   "0-2": {
     title: "AI Novice - Foundational Exploration",
     description: "Organizations in this range are at the very beginning of their AI journey, with limited or no established AI strategy, data infrastructure, or talent. They are likely exploring the basic concepts of AI and its potential relevance.",
-    color: "bg-red-100 text-red-800",
+    color: "bg-red-600 text-white",
     recommendations: [
       "AI Strategy Workshop & Visioning: We can facilitate an intensive workshop with your leadership to define a clear AI vision, identify potential high-impact use cases, and align AI initiatives with your core business objectives. This lays the groundwork for a successful discovery phase.",
       "Data Landscape Assessment: Our team can conduct a preliminary assessment of your existing data infrastructure, identifying key data sources, assessing data quality, and outlining initial steps for data preparation crucial for any AI project.",
@@ -88,7 +88,7 @@ const recommendations = {
   "3-4": {
     title: "AI Explorer - Strategic Planning",
     description: "These organizations have some nascent interest in AI and may have isolated initiatives, but lack a cohesive strategy, robust data governance, or integrated technology. They are in the early stages of planning their AI roadmap.",
-    color: "bg-orange-100 text-orange-800",
+    color: "bg-orange-600 text-white",
     recommendations: [
       "AI Roadmap Development: We can collaborate to develop a detailed AI roadmap, prioritizing use cases, outlining technology requirements, and defining a phased implementation plan. This structured approach is central to our discovery phase process.",
       "Data Governance & Preparation Consulting: Our experts can assist in establishing robust data governance frameworks and implementing data preparation strategies to ensure your data is AI-ready, minimizing roadblocks during model development.",
@@ -98,7 +98,7 @@ const recommendations = {
   "5-6": {
     title: "AI Builder - Capability Development",
     description: "Organizations at this level have initiated AI projects and are actively building core capabilities in data, technology, and talent. They are focused on developing and implementing initial AI solutions but may face challenges in scaling or governance.",
-    color: "bg-yellow-100 text-yellow-800",
+    color: "bg-yellow-500 text-white",
     recommendations: [
       "AI Solution Co-Development & Prototyping: Partner with us to co-develop and prototype AI solutions, leveraging our expertise to accelerate your development cycles and build robust, scalable applications. This is where our core development services come into play.",
       "MLOps & Deployment Strategy: We can help you design and implement MLOps practices to streamline the deployment, monitoring, and maintenance of your AI models, ensuring operational efficiency and reliability.",
@@ -108,7 +108,7 @@ const recommendations = {
   "7-8": {
     title: "AI Integrator - Operationalizing AI",
     description: "These organizations have a solid AI foundation with ongoing projects and established practices. They are looking to integrate AI more deeply into their operations, scale successful solutions, and mature their MLOps practices.",
-    color: "bg-blue-100 text-blue-800",
+    color: "bg-blue-600 text-white",
     recommendations: [
       "Advanced AI Integration & Optimization: We specialize in integrating complex AI solutions into existing enterprise systems, optimizing performance, and ensuring seamless operational workflows.",
       "Scalable AI Architecture Design: Our architects can design scalable and resilient AI architectures that support the expansion of your AI initiatives across multiple departments and business units.",
@@ -118,7 +118,7 @@ const recommendations = {
   "9-10": {
     title: "AI Innovator - Advanced & Transformative AI",
     description: "Organizations in this category are leaders in AI adoption, with mature strategies, robust infrastructure, and a strong AI-driven culture. They are continuously innovating, leveraging AI for significant business value, and exploring cutting-edge applications.",
-    color: "bg-green-100 text-green-800",
+    color: "bg-green-600 text-white",
     recommendations: [
       "Next-Generation AI Research & Development: Collaborate with our R&D team to explore and develop cutting-edge AI technologies, positioning your organization at the forefront of AI innovation.",
       "AI-Driven Business Transformation Consulting: We can partner with you to identify and implement AI-driven transformations across your core business processes, unlocking new revenue streams and operational efficiencies.",
