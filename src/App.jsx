@@ -159,13 +159,20 @@ function App() {
   }
 
   const calculateResults = () => {
+    // Debug logging
+    console.log('All answers:', answers)
+    console.log('Categories:', categories)
+    
     let totalScore = 0
     const categoryScores = {}
 
     categories.forEach(category => {
       let categoryTotal = 0
       for (let i = 0; i < 2; i++) {
-        categoryTotal += answers[`${category}-${i}`] || 0
+        const answerKey = `${category}-${i}`
+        const answerValue = answers[answerKey] || 0
+        console.log(`Answer for "${answerKey}":`, answerValue)
+        categoryTotal += answerValue
       }
       categoryScores[category] = categoryTotal
       totalScore += categoryTotal
