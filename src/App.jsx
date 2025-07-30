@@ -253,7 +253,9 @@ function App() {
             <div className="flex justify-center mb-4">
               <Brain className="h-16 w-16 text-blue-600" />
             </div>
-            <CardTitle className="text-3xl font-bold text-gray-900">AI Readiness Assessment</CardTitle>
+            <CardTitle className="text-3xl font-bold text-gray-900">
+              AI Readiness Assessment <span className="text-blue-600 text-2xl">(v6)</span>
+            </CardTitle>
             <CardDescription className="text-lg text-gray-600 mt-4">
               Discover how ready your organization is for implementing AI workflows and leveraging AI in your business.
               This streamlined assessment will evaluate your organization across 5 key areas and provide personalized recommendations.
