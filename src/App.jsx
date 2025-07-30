@@ -171,7 +171,9 @@ function App() {
       totalScore += categoryTotal
     })
 
-    const normalizedScore = (totalScore / 10).toFixed(1)
+    // Total possible score: 5 categories × 2 questions × 5 points = 50
+    // Normalize to 0-10 scale: (totalScore / 50) × 10
+    const normalizedScore = ((totalScore / 50) * 10).toFixed(1)
     
     let recommendationKey = "0-2"
     if (normalizedScore >= 9) recommendationKey = "9-10"
@@ -283,19 +285,26 @@ function App() {
                     {questionData.text}
                   </CardTitle>
                   <CardDescription>
-                    Rate your organization on a scale of 0 to 10, where 0 indicates no readiness and 10 indicates full readiness.
+                    Rate your organization on a scale of 1 to 5, where 1 indicates very low readiness and 5 indicates very high readiness.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-11 gap-2 mb-6">
-                    {[...Array(11)].map((_, index) => (
+                  <div className="grid grid-cols-5 gap-3 mb-6">
+                    {[...Array(5)].map((_, index) => (
                       <Button
-                        key={index}
+                        key={index + 1}
                         variant="outline"
-                        className="h-12 w-full text-sm font-medium hover:bg-blue-50 hover:border-blue-300"
-                        onClick={() => handleAnswer(index)}
+                        className="h-16 w-full text-lg font-medium hover:bg-blue-50 hover:border-blue-300 flex flex-col items-center justify-center"
+                        onClick={() => handleAnswer(index + 1)}
                       >
-                        {index}
+                        <span className="text-xl font-bold">{index + 1}</span>
+                        <span className="text-xs mt-1">
+                          {index === 0 && "Very Low"}
+                          {index === 1 && "Low"}
+                          {index === 2 && "Moderate"}
+                          {index === 3 && "High"}
+                          {index === 4 && "Very High"}
+                        </span>
                       </Button>
                     ))}
                   </div>
@@ -376,12 +385,13 @@ function App() {
                   <h4 className="font-semibold text-gray-900">Category Breakdown:</h4>
                   {categories.map((category, index) => {
                     const score = results.categoryScores[category]
-                    const percentage = (score / 20) * 100
+                    // Max score per category: 2 questions × 5 points = 10
+                    const percentage = (score / 10) * 100
                     return (
                       <div key={index} className="space-y-1">
                         <div className="flex justify-between text-sm">
                           <span className="font-medium">{category}</span>
-                          <span>{score}/20</span>
+                          <span>{score}/10</span>
                         </div>
                         <Progress value={percentage} className="h-2" />
                       </div>
