@@ -88,7 +88,7 @@ const recommendations = {
   "3-4": {
     title: "AI Explorer - Strategic Planning",
     description: "These organizations have some nascent interest in AI and may have isolated initiatives, but lack a cohesive strategy, robust data governance, or integrated technology. They are in the early stages of planning their AI roadmap.",
-    color: "bg-orange-600 text-white",
+    color: "bg-orange-600 text-black",
     recommendations: [
       "AI Roadmap Development: We can collaborate to develop a detailed AI roadmap, prioritizing use cases, outlining technology requirements, and defining a phased implementation plan. This structured approach is central to our discovery phase process.",
       "Data Governance & Preparation Consulting: Our experts can assist in establishing robust data governance frameworks and implementing data preparation strategies to ensure your data is AI-ready, minimizing roadblocks during model development.",
