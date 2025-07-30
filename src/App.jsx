@@ -142,26 +142,21 @@ function App() {
     const questionIndex = currentQuestion
     const answerKey = `${categoryName}-${questionIndex}`
     
-    console.log(`Saving answer: ${answerKey} = ${score}`)
-    console.log(`Current category: ${currentCategory}/${categories.length - 1}, Question: ${currentQuestion}`)
-    
-    // Update answers
-    const newAnswers = {
+    // Build the complete answers object including this answer
+    const updatedAnswers = {
       ...answers,
       [answerKey]: score
     }
-    setAnswers(newAnswers)
-
+    
+    // Update state for UI
+    setAnswers(updatedAnswers)
+    
     // Check if this is the last question
     const isLastQuestion = currentCategory === categories.length - 1 && currentQuestion === 1
     
     if (isLastQuestion) {
-      console.log('Last question answered! All answers:', newAnswers)
-      // For the last question, set a flag and use the newAnswers
-      setCurrentStep('calculating')
-      setTimeout(() => {
-        calculateResultsWithAnswers(newAnswers)
-      }, 100)
+      // Calculate results immediately with the complete answers object
+      calculateResultsWithAnswers(updatedAnswers)
     } else {
       // Move to next question
       if (currentQuestion < 1) {
@@ -174,10 +169,6 @@ function App() {
   }
 
   const calculateResultsWithAnswers = (finalAnswers) => {
-    // Debug logging
-    console.log('All answers:', finalAnswers)
-    console.log('Categories:', categories)
-    
     let totalScore = 0
     const categoryScores = {}
 
@@ -186,15 +177,28 @@ function App() {
       for (let i = 0; i < 2; i++) {
         const answerKey = `${category}-${i}`
         const answerValue = finalAnswers[answerKey] || 0
-        console.log(`Answer for "${answerKey}":`, answerValue)
         categoryTotal += answerValue
       }
       categoryScores[category] = categoryTotal
       totalScore += categoryTotal
     })
 
-    // Continue with the rest of the calculation...
-    completeCalculation(totalScore, categoryScores)
+    // Calculate and set results directly
+    const normalizedScore = ((totalScore / 50) * 10).toFixed(1)
+    
+    let recommendationKey = "0-2"
+    if (normalizedScore >= 9) recommendationKey = "9-10"
+    else if (normalizedScore >= 7) recommendationKey = "7-8"
+    else if (normalizedScore >= 5) recommendationKey = "5-6"
+    else if (normalizedScore >= 3) recommendationKey = "3-4"
+
+    setResults({
+      totalScore: normalizedScore,
+      categoryScores,
+      recommendation: recommendations[recommendationKey]
+    })
+
+    setCurrentStep('results')
   }
 
   const calculateResults = () => {
@@ -275,22 +279,6 @@ function App() {
                 Start Assessment
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    )
-  }
-
-  if (currentStep === 'calculating') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 flex items-center justify-center">
-        <Card className="w-full max-w-2xl">
-          <CardContent className="p-8 text-center">
-            <div className="animate-pulse">
-              <Brain className="h-16 w-16 mx-auto mb-4 text-blue-600" />
-              <h2 className="text-2xl font-semibold mb-2">Calculating Your Results...</h2>
-              <p className="text-gray-600">Please wait while we analyze your responses.</p>
             </div>
           </CardContent>
         </Card>
