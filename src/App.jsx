@@ -140,11 +140,14 @@ function App() {
   const handleAnswer = (score) => {
     const categoryName = categories[currentCategory]
     const questionIndex = currentQuestion
+    const answerKey = `${categoryName}-${questionIndex}`
     
-    setAnswers(prev => ({
-      ...prev,
-      [`${categoryName}-${questionIndex}`]: score
-    }))
+    // Update answers and handle navigation
+    const newAnswers = {
+      ...answers,
+      [answerKey]: score
+    }
+    setAnswers(newAnswers)
 
     // Move to next question
     if (currentQuestion < 1) {
@@ -153,14 +156,16 @@ function App() {
       setCurrentCategory(currentCategory + 1)
       setCurrentQuestion(0)
     } else {
-      // Assessment complete
-      calculateResults()
+      // Assessment complete - use the newAnswers directly
+      setTimeout(() => {
+        calculateResultsWithAnswers(newAnswers)
+      }, 100)
     }
   }
 
-  const calculateResults = () => {
+  const calculateResultsWithAnswers = (finalAnswers) => {
     // Debug logging
-    console.log('All answers:', answers)
+    console.log('All answers:', finalAnswers)
     console.log('Categories:', categories)
     
     let totalScore = 0
@@ -170,13 +175,23 @@ function App() {
       let categoryTotal = 0
       for (let i = 0; i < 2; i++) {
         const answerKey = `${category}-${i}`
-        const answerValue = answers[answerKey] || 0
+        const answerValue = finalAnswers[answerKey] || 0
         console.log(`Answer for "${answerKey}":`, answerValue)
         categoryTotal += answerValue
       }
       categoryScores[category] = categoryTotal
       totalScore += categoryTotal
     })
+
+    // Continue with the rest of the calculation...
+    completeCalculation(totalScore, categoryScores)
+  }
+
+  const calculateResults = () => {
+    calculateResultsWithAnswers(answers)
+  }
+
+  const completeCalculation = (totalScore, categoryScores) => {
 
     // Total possible score: 5 categories × 2 questions × 5 points = 50
     // Normalize to 0-10 scale: (totalScore / 50) × 10
