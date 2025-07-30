@@ -98,7 +98,7 @@ const recommendations = {
   "5-6": {
     title: "AI Builder - Capability Development",
     description: "Organizations at this level have initiated AI projects and are actively building core capabilities in data, technology, and talent. They are focused on developing and implementing initial AI solutions but may face challenges in scaling or governance.",
-    color: "bg-yellow-500 text-white",
+    color: "bg-yellow-500 text-black",
     recommendations: [
       "AI Solution Co-Development & Prototyping: Partner with us to co-develop and prototype AI solutions, leveraging our expertise to accelerate your development cycles and build robust, scalable applications. This is where our core development services come into play.",
       "MLOps & Deployment Strategy: We can help you design and implement MLOps practices to streamline the deployment, monitoring, and maintenance of your AI models, ensuring operational efficiency and reliability.",
