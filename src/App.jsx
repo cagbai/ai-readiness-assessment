@@ -424,7 +424,11 @@ function App() {
                   <p className="text-sm text-blue-800 mb-3">
                     Contact us to discuss how we can help accelerate your AI journey with our discovery phase services.
                   </p>
-                  <Button className="w-full" size="sm">
+                  <Button 
+                    className="w-full" 
+                    size="sm"
+                    onClick={() => window.open('https://azumo.com/get-in-touch', '_blank')}
+                  >
                     Schedule a Consultation
                   </Button>
                 </div>
