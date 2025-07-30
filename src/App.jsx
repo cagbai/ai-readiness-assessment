@@ -142,24 +142,34 @@ function App() {
     const questionIndex = currentQuestion
     const answerKey = `${categoryName}-${questionIndex}`
     
-    // Update answers and handle navigation
+    console.log(`Saving answer: ${answerKey} = ${score}`)
+    console.log(`Current category: ${currentCategory}/${categories.length - 1}, Question: ${currentQuestion}`)
+    
+    // Update answers
     const newAnswers = {
       ...answers,
       [answerKey]: score
     }
     setAnswers(newAnswers)
 
-    // Move to next question
-    if (currentQuestion < 1) {
-      setCurrentQuestion(currentQuestion + 1)
-    } else if (currentCategory < categories.length - 1) {
-      setCurrentCategory(currentCategory + 1)
-      setCurrentQuestion(0)
-    } else {
-      // Assessment complete - use the newAnswers directly
+    // Check if this is the last question
+    const isLastQuestion = currentCategory === categories.length - 1 && currentQuestion === 1
+    
+    if (isLastQuestion) {
+      console.log('Last question answered! All answers:', newAnswers)
+      // For the last question, set a flag and use the newAnswers
+      setCurrentStep('calculating')
       setTimeout(() => {
         calculateResultsWithAnswers(newAnswers)
       }, 100)
+    } else {
+      // Move to next question
+      if (currentQuestion < 1) {
+        setCurrentQuestion(currentQuestion + 1)
+      } else {
+        setCurrentCategory(currentCategory + 1)
+        setCurrentQuestion(0)
+      }
     }
   }
 
@@ -265,6 +275,22 @@ function App() {
                 Start Assessment
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  if (currentStep === 'calculating') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 flex items-center justify-center">
+        <Card className="w-full max-w-2xl">
+          <CardContent className="p-8 text-center">
+            <div className="animate-pulse">
+              <Brain className="h-16 w-16 mx-auto mb-4 text-blue-600" />
+              <h2 className="text-2xl font-semibold mb-2">Calculating Your Results...</h2>
+              <p className="text-gray-600">Please wait while we analyze your responses.</p>
             </div>
           </CardContent>
         </Card>
