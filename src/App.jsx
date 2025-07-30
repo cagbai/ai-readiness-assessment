@@ -427,7 +427,7 @@ function App() {
                   <Button 
                     className="w-full" 
                     size="sm"
-                    onClick={() => window.open('https://azumo.com/get-in-touch', '_blank')}
+                    onClick={() => window.open('https://azumo.com/get-in-touch?utm_source=ai-readiness-assessment&utm_medium=web&utm_campaign=ai-assessment&utm_content=schedule-consultation', '_blank')}
                   >
                     Schedule a Consultation
                   </Button>
