@@ -1,15 +1,16 @@
 # AI Readiness Assessment Tool - Project Documentation
 
 ## Project Overview
-**Date**: July 30, 2025  
-**Version**: 1.0.0  
-**Status**: Successfully deployed to Vercel
+**Date**: July 31, 2025  
+**Version**: 6.0.0  
+**Status**: Production ready with all major improvements
 
 ## Project Migration Summary
-Successfully migrated the AI Readiness Assessment tool from Manus (https://gusgwagn.manus.space) to Vercel with GitHub integration.
+Successfully migrated the AI Readiness Assessment tool from Manus (https://gusgwagn.manus.space) to Vercel with GitHub integration and comprehensive improvements.
 
 ## Current Deployment Information
-- **Production URL**: https://ai-readiness-assessment-r4vxsw11e-cagbais-projects.vercel.app
+- **Custom Domain**: https://ai-readiness.azumo.com
+- **Latest Production URL**: https://ai-readiness-assessment-e4xarw5gq-cagbais-projects.vercel.app
 - **GitHub Repository**: https://github.com/cagbai/ai-readiness-assessment
 - **Local Development Path**: `~/ai-readiness-assessment`
 
@@ -20,108 +21,132 @@ Successfully migrated the AI Readiness Assessment tool from Manus (https://gusgw
 - **Icons**: Lucide React 0.534.0
 - **Hosting**: Vercel
 - **Version Control**: Git/GitHub
+- **DNS**: Cloudflare (CNAME pointing to Vercel)
 
 ## Project Structure
 ```
 ai-readiness-assessment/
+├── public/
+│   ├── Blue_White Logo Iso.svg # Azumo favicon
+│   └── favicon.ico             # Fallback favicon
 ├── src/
-│   ├── App.jsx              # Main application component
-│   ├── App.css              # Tailwind CSS imports
-│   ├── main.jsx             # React entry point
+│   ├── App.jsx                 # Main application component
+│   ├── App.css                 # Tailwind CSS imports
+│   ├── main.jsx                # React entry point
 │   └── components/
-│       └── ui/              # UI component library
+│       └── ui/                 # UI component library
 │           ├── button.jsx
 │           ├── card.jsx
 │           ├── progress.jsx
 │           └── badge.jsx
-├── index.html               # HTML entry point
-├── package.json             # Node dependencies
-├── vite.config.js           # Vite configuration
-├── tailwind.config.js       # Tailwind CSS configuration
-├── postcss.config.js        # PostCSS configuration
-├── README.md                # Project readme
-└── .gitignore              # Git ignore file
+├── index.html                  # HTML entry point
+├── package.json                # Node dependencies
+├── vite.config.js              # Vite configuration
+├── tailwind.config.js          # Tailwind CSS configuration
+├── postcss.config.js           # PostCSS configuration
+├── README.md                   # Project readme
+└── .gitignore                  # Git ignore file
 ```
 
-## Key Features
-1. **10-question assessment** (2 per category)
+## Key Features - Version 6.0.0
+1. **10-question assessment** with 1-5 scoring scale (2 per category)
 2. **5 evaluation areas**:
    - AI Strategy & Business Alignment
    - Data Foundation & Governance
    - Technology Infrastructure & Tools
    - Talent, Skills & Culture
    - Risk Management & Ethical AI
-3. **Scoring system**: 0-10 scale with 5 readiness levels
-4. **Responsive design** for desktop and mobile
-5. **3-5 minute completion time**
+3. **Improved scoring system**: 1-5 scale with descriptive labels
+4. **Enhanced UI**: Better contrast, professional badges
+5. **UTM tracking**: Consultation button includes tracking parameters
+6. **Custom branding**: Azumo favicon and professional styling
+7. **Mobile responsive** design
+8. **3-5 minute completion time**
 
-## Work Completed
+## Major Improvements Made
 
-### 1. Project Setup (Initial)
-- Created local project directory at `~/ai-readiness-assessment`
-- Copied original assessment files from Downloads
-- Initialized Git repository with main branch
+### 1. Scoring System Enhancement
+- **Changed from 0-10 to 1-5 scale** for better user experience
+- **Added descriptive labels**: Very Low, Low, Moderate, High, Very High
+- **Improved button UI**: Larger, more accessible buttons
+- **Fixed critical bug**: Last question now properly saved (React state timing issue)
 
-### 2. React/Vite Configuration
-- Set up Vite + React project structure
-- Created package.json with required dependencies
-- Configured vite.config.js with path aliases
-- Added proper .gitignore file
+### 2. UI/UX Improvements
+- **Fixed contrast issues** on result badges:
+  - Red: White text on red background
+  - Orange: Black text on orange background  
+  - Yellow: Black text on yellow background
+  - Blue: White text on blue background
+  - Green: White text on green background
+- **Added version marker**: (v6) visible on intro screen
+- **Professional styling**: Consistent with Azumo branding
 
-### 3. Tailwind CSS Integration
-- Installed Tailwind CSS v3.4.17 (migrated from v4 syntax)
-- Created tailwind.config.js and postcss.config.js
-- Updated App.css to use standard Tailwind directives
-- Added @tailwindcss/forms plugin
+### 3. Conversion Tracking
+- **UTM parameters** added to consultation button:
+  - utm_source: ai-readiness-assessment
+  - utm_medium: web
+  - utm_campaign: ai-assessment
+  - utm_content: schedule-consultation
+- **Direct link**: https://azumo.com/get-in-touch with tracking
 
-### 4. Component Library
-Created custom UI components to replace missing dependencies:
-- `button.jsx` - Customizable button component with variants
-- `card.jsx` - Card components (Card, CardHeader, CardTitle, CardDescription, CardContent)
-- `progress.jsx` - Progress bar component
-- `badge.jsx` - Badge component with variants
+### 4. Domain & Hosting
+- **Custom domain**: ai-readiness.azumo.com
+- **Cloudflare DNS**: CNAME record pointing to Vercel
+- **SSL certificate**: Automatically managed by Vercel
+- **Multiple aliases**: Supports both ai-readiness and ai-tools subdomains
 
-### 5. GitHub Integration
-- Created public repository: cagbai/ai-readiness-assessment
-- Initial commit with all project files
-- Set up remote tracking
+### 5. Bug Fixes
+- **Last question scoring**: Fixed React state timing issue preventing last answer from being saved
+- **Deterministic calculation**: Uses local variable instead of async state for final results
+- **Consistent deployments**: Version markers help verify deployment status
 
-### 6. Vercel Deployment
-- Installed Vercel CLI
-- Configured project for Vercel deployment
-- Successfully deployed to production
-- Automatic deployments enabled on git push
+## Technical Fixes Applied
 
-## Git Commit History
-1. **Initial commit**: AI Readiness Assessment Tool
-2. **Build fixes**: Add UI components and fix build configuration for Vercel deployment
+### React State Management Bug
+**Problem**: Last question in Risk Management category showing as 0 instead of selected value.
 
-## Rollback Instructions
+**Root Cause**: React state updates are asynchronous. When user clicked final answer, `calculateResults()` was called immediately before state update completed.
 
-### To Rollback to This Version
-```bash
-# Get the current commit hash (save this!)
-cd ~/ai-readiness-assessment
-git log --oneline -1
-# Current commit: 385b136
+**Solution**: 
+```javascript
+// Build complete answers object including current answer
+const updatedAnswers = {
+  ...answers,
+  [answerKey]: score
+}
 
-# To rollback in the future:
-git checkout 385b136
-# Or to reset main branch:
-git reset --hard 385b136
-git push --force origin main
+if (isLastQuestion) {
+  // Use complete answers directly, not async state
+  calculateResultsWithAnswers(updatedAnswers)
+}
 ```
 
-### Backup Current State
-```bash
-# Create a backup branch
-git checkout -b backup-v1.0.0
-git push origin backup-v1.0.0
+**Credit**: Thanks to colleague feedback for identifying the proper React state management approach.
 
-# Create a tagged release
-git tag -a v1.0.0 -m "Initial Vercel deployment"
-git push origin v1.0.0
-```
+## Current Git History
+Key commits:
+- `82738f8` - Use correct Azumo logo as favicon
+- `467d396` - Add version marker (v6)
+- `8bb462d` - Implement deterministic fix for last question
+- `1006bd5` - Update AI Explorer badge contrast
+- `f74f9fc` - Update AI Builder badge contrast
+- `edeb989` - Add UTM parameters to consultation button
+
+## Deployment Information
+
+### Production URLs
+- **Primary**: https://ai-readiness.azumo.com
+- **Vercel URL**: https://ai-readiness-assessment-e4xarw5gq-cagbais-projects.vercel.app
+
+### Rollback References
+- **Version 6.0.0**: `82738f8`
+- **Version 5.0.0**: `467d396` (with version marker)
+- **Version 4.0.0**: `8bb462d` (with scoring fix)
+
+### Backup Strategy
+- **Backup Branch**: `backup-v1.0.0` (original migration)
+- **Tagged Releases**: `v1.0.0`, plus version markers in commits
+- **Full Documentation**: Available in repository
 
 ## Development Commands
 
@@ -134,52 +159,72 @@ npm run build        # Build for production
 npm run preview      # Preview production build
 ```
 
+### Deployment Commands
+```bash
+vercel --prod        # Deploy to production
+vercel ls            # List deployments
+vercel domains ls    # List configured domains
+```
+
 ### Git Commands
 ```bash
 git status           # Check changes
 git add .            # Stage all changes
 git commit -m "msg"  # Commit changes
-git push             # Push to GitHub (triggers Vercel deploy)
+git push             # Push to GitHub (triggers auto-deploy)
 ```
 
-### Vercel Commands
-```bash
-vercel               # Deploy preview
-vercel --prod        # Deploy to production
-vercel logs          # View deployment logs
-```
+## Configuration Files
 
-## Environment Details
-- **Node.js**: Required (v16+)
-- **npm**: Package manager
-- **OS**: macOS Darwin 24.5.0
-- **Working Directory**: /Users/chikeagbai/ai-readiness-assessment
+### Domain Configuration (Cloudflare)
+- **Type**: CNAME
+- **Name**: ai-readiness
+- **Target**: cname.vercel-dns.com
+- **Proxy Status**: DNS only (not proxied)
 
-## Known Issues
-- 2 moderate severity npm vulnerabilities (non-critical)
-- Can be addressed with `npm audit fix` if needed
+### Vercel Configuration
+- **Framework**: Detected as Vite
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **Root Directory**: `/`
+
+## Scoring Logic
+- **Input Range**: 1-5 per question
+- **Total Questions**: 10 (2 per category)
+- **Max Possible Score**: 50 (10 questions × 5 points)
+- **Normalized Score**: (totalScore / 50) × 10 = 0-10 scale
+- **Recommendation Levels**:
+  - 0-2: AI Novice - Foundational Exploration
+  - 3-4: AI Explorer - Strategic Planning  
+  - 5-6: AI Builder - Capability Development
+  - 7-8: AI Integrator - Operationalizing AI
+  - 9-10: AI Innovator - Advanced & Transformative AI
+
+## Quality Assurance
+- ✅ All 10 questions save properly (including last question)
+- ✅ Scoring calculation is accurate and deterministic
+- ✅ UI contrast meets accessibility standards
+- ✅ UTM tracking functions correctly
+- ✅ Mobile responsive design
+- ✅ Cross-browser compatibility
+- ✅ Custom domain with SSL
+- ✅ Professional Azumo branding
 
 ## Future Considerations
-1. Add custom domain in Vercel dashboard
-2. Set up environment variables if needed
-3. Add analytics tracking
-4. Implement form submission handling
-5. Add data persistence options
-
-## Original Resources
-- **Original Manus URL**: https://gusgwagn.manus.space
-- **Original Files Location**: ~/Downloads/AI Readiness Assessment Tool for Business Workflow Planning.zip
-- **Documentation Files**:
-  - AI Readiness Assessment Framework (Revised).md
-  - AI Readiness Assessment - Deployment Instructions (Updated).md
-  - todo.md
+1. Add analytics dashboard for assessment completions
+2. Implement form submission to capture leads
+3. Add assessment results export functionality
+4. Consider A/B testing different question sets
+5. Add multi-language support
+6. Implement user accounts for result history
 
 ## Support & Maintenance
-- GitHub Issues: https://github.com/cagbai/ai-readiness-assessment/issues
-- Vercel Dashboard: https://vercel.com/cagbais-projects/ai-readiness-assessment
+- **GitHub Issues**: https://github.com/cagbai/ai-readiness-assessment/issues
+- **Vercel Dashboard**: https://vercel.com/cagbais-projects/ai-readiness-assessment
+- **Cloudflare DNS**: Managed via Azumo's Cloudflare account
 
 ---
 
-**Last Updated**: July 30, 2025  
-**Version**: 1.0.0  
-**Status**: Production Ready
+**Last Updated**: July 31, 2025  
+**Version**: 6.0.0  
+**Status**: Production Ready with All Improvements

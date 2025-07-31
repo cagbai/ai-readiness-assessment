@@ -87,7 +87,7 @@ const recommendations = {
   },
   "3-4": {
     title: "AI Explorer - Strategic Planning",
-    description: "These organizations have some nascent interest in AI and may have isolated initiatives, but lack a cohesive strategy, robust data governance, or integrated technology. They are in the early stages of planning their AI roadmap.",
+    description: "Typically, these organizations have some nascent interest in AI and may have isolated initiatives, but lack a cohesive strategy, robust data governance, or integrated technology. They are in the early stages of planning their AI roadmap.",
     color: "bg-orange-600 text-black",
     recommendations: [
       "AI Roadmap Development: We can collaborate to develop a detailed AI roadmap, prioritizing use cases, outlining technology requirements, and defining a phased implementation plan. This structured approach is central to our discovery phase process.",
@@ -107,7 +107,7 @@ const recommendations = {
   },
   "7-8": {
     title: "AI Integrator - Operationalizing AI",
-    description: "These organizations have a solid AI foundation with ongoing projects and established practices. They are looking to integrate AI more deeply into their operations, scale successful solutions, and mature their MLOps practices.",
+    description: "Based on your responses, your organization has a solid AI foundation with ongoing projects and established practices. Organizations like yours are looking to integrate AI more deeply into their operations, scale successful solutions, and mature their MLOps practices.",
     color: "bg-blue-600 text-white",
     recommendations: [
       "Advanced AI Integration & Optimization: We specialize in integrating complex AI solutions into existing enterprise systems, optimizing performance, and ensuring seamless operational workflows.",
